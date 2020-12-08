@@ -1,5 +1,8 @@
 .jumbotron {
     text-align: center;
+    font-family: Pacifico;
+    border-radius: 25px;
+    margin-top: 10px;
 }
 
 .burger-container {
@@ -13,4 +16,9 @@
 
 .eaten {
     flex: 2;
+}
+
+img {
+    width: 30%;
+    height: 30%;
 }

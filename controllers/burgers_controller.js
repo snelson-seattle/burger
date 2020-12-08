@@ -7,7 +7,7 @@ const burger = require("../models/burger.js");
 
 // Create all our routes and set up logic within those routes where required.
 router.get("/", function(req, res) {
-    burger.all(data => {
+    burger.selectAll(data => {
         // Create an object for handlebars
         let hbsOjbect = {
             burgers: data
@@ -20,7 +20,7 @@ router.post("/api/burgers", (req, res) => {
     if(req.body.burger_name == ""){
         res.json("Burger Type field must not be blank");
     }else{
-        burger.create(["burger_name"], [req.body.burger_name], (result) => {
+        burger.insertOne(["burger_name"], [req.body.burger_name], (result) => {
             res.json({ id: result.insertId });
         });
     }     
@@ -29,7 +29,7 @@ router.post("/api/burgers", (req, res) => {
 router.put("/api/burgers/:id", (req, res) => {
     let condition = "id = " + req.params.id;
 
-    burger.update({
+    burger.updateOne({
         devoured: req.body.devoured
     }, condition, (result) => {
         if(result.changedRows == 0){
