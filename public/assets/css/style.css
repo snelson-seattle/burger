@@ -1,0 +1,16 @@
+.jumbotron {
+    text-align: center;
+}
+
+.burger-container {
+    display: flex;
+    width: 100%;
+}
+
+.uneaten {
+    flex: 2;
+}
+
+.eaten {
+    flex: 2;
+}
