@@ -1,37 +1,48 @@
-<div class="jumbotron">
-    <h1 class="text-center">Eat-Da-Burger!</h1>
-</div>
+<main> 
+    <div class="container">
+        <section class="jumbotron">
+            <h1>Eat-Da-Burger!</h1>
+        </section>
 
-<div class="container">
+        <section>
+            <h2>Add Burgers</h2>
+            <form class="create-form">
+                <label for="burger-input">Burger Type: </label>
+                <input type="text" id="burger-input" class="burger-input" placeholder="Enter a burger type">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </section>
 
-  <div class="row">
-    <div class="col-sm-8 col-sm-offset-2">
-      <p class="cool-font">What kind of burger do you want to eat?</p>
-      <input class="form-control" type="text" id="burger" placeholder="Enter Your Burger">      
-      <button id="burger-submit" class="btn btn-lg pull-right">Submit!</button>
+        <hr>
+        
+        <section>
+            <h2>Uneaten Burgers List</h2>
+            <ul>
+            {{#each burgers}}
+                {{#unless this.devoured }}
+                    <p>ID: {{this.id}}</p>
+                    <p>Name: {{this.burger_name}}</p>
+                    <button class="btn btn-success eat-burger" data-id="{{this.id}}"><span class="fas fa-laugh"></span> Eat!</button>
+                    <button class="btn btn-danger delete-burger"data-id="{{this.id}}"><span class="fas fa-trash"></span> Remove</button>	            
+                {{/unless}}
+            {{/each}}
+            </ul>
+        </section>
+
+        <section>
+            <h2>Eaten Burgers List</h2>
+            <ul>
+            {{#each burgers}}
+                {{#if this.devoured }}
+                <li>
+                    <p>{{this.burger_name}}</p>
+  	            </li>
+                {{/if}}  	            
+            {{/each}}
+            </ul>
+        </section>
     </div>
-  </div>
+    
+</main>
 
-  <div class="row">
-    <div class="col-sm-8 col-sm-offset-2">
-      <h2>Burgers</h2>
-      <hr>
-      <div id="burger-area">
-        <ul>
-          {{#each burgers}}
-  	        <li>
-  		        <p><span class="label">ID:</span> {{this.id}}</p>
-              <p><span class="label">Name:</span> {{this.burger_name}}</p>
-              <button data-id="{{this.id}}" class="devour">Devour</button>
-  	        </li>
-          {{/each}}
-        </ul>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<script type="text/javascript" src="../public/assets/js/index.js"></script>
-  
-
+<script src="/assets/js/index.js"></script>
