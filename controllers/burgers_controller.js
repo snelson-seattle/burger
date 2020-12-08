@@ -17,9 +17,13 @@ router.get("/", function(req, res) {
 });
 
 router.post("/api/burgers", (req, res) => {
-    burger.create(["burger_name"], [req.body.burger_name], (result) => {
-        res.json({ id: result.insertId });
-    }); 
+    if(req.body.burger_name == ""){
+        res.json("Burger Type field must not be blank");
+    }else{
+        burger.create(["burger_name"], [req.body.burger_name], (result) => {
+            res.json({ id: result.insertId });
+        });
+    }     
 });
 
 router.put("/api/burgers/:id", (req, res) => {
